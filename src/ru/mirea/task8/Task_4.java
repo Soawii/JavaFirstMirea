@@ -30,11 +30,20 @@ public class Task_4
 	public static void main(String[] args)
 	{
 		int k, s;
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Enter k: ");
-		k = sc.nextInt();
-		System.out.println("Enter s: ");
-		s = sc.nextInt();
+		try {
+			Scanner sc = new Scanner(System.in);
+			System.out.println("Enter k: ");
+			k = sc.nextInt();
+			System.out.println("Enter s: ");
+			s = sc.nextInt();
+		}
+		catch (Exception e)
+		{
+			System.out.println(e);
+			return;
+		}
+
+
 
 		System.out.println(recursion(k, s, "", true));
 	}

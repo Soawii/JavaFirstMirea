@@ -57,6 +57,27 @@ public class Football
 		panel.add(label_last_score);
 		panel.add(label_winner);
 
+		JLabel field = new JLabel();
+		Timer t = new Timer(1000, new ActionListener()
+		{
+			int count = 10;
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				count--;
+				if (count == 0)
+				{
+					button_madrid.setEnabled(false);
+					button_milan.setEnabled(false);
+					Timer s = (Timer)e.getSource();
+					s.stop();
+				}
+				field.setText(String.valueOf(count));
+			}
+		});
+		t.start();
+		panel.add(field);
+
 		frame.add(panel);
 		frame.setVisible(true);
 	}
