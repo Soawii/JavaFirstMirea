@@ -16,6 +16,6 @@ public class Square extends Shape
 
 		int width = (int)(Math.random() * 70 + 30);
 
-		g.fillRect(50 - width / 2, 50 - width / 2, width,width);
+		g.fillRect(50 - width / 2, 50 - width / 2, width, width);
 	}
 }

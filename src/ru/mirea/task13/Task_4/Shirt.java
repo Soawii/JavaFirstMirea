@@ -41,6 +41,7 @@ public class Shirt
 		{
 			new_shirts[i] = new Shirt(shirts[i]);
 			System.out.println(new_shirts[i].toString());
+
 		}
 	}
 }

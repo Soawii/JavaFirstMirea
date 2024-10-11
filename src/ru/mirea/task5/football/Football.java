@@ -75,6 +75,7 @@ public class Football
 				field.setText(String.valueOf(count));
 			}
 		});
+		
 		t.start();
 		panel.add(field);
 

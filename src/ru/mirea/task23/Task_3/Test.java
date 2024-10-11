@@ -40,5 +40,22 @@ public class Test
 
         System.out.println(e2.evaluate(x, y, z));
 
+        ExpressionParser parser = new ExpressionParser();
+        Expression ex2 = parser.parse("1000000*x*x*x*x*x/(x-1)");
+
+        int SPACE = 10;
+        System.out.println(String.format("%-" + SPACE + "s" + "%-" + SPACE + "s", "x", "f"));
+        for (int x_ = 0; x_ <= 10; x_++)
+        {
+            System.out.print(String.format("%-" + SPACE + "d", x_));
+            try
+            {
+                System.out.println(String.format("%-" + SPACE + "f", ex2.evaluate(x_)));
+            }
+            catch (Exception exc)
+            {
+                System.out.println(String.format("%-" + SPACE + "s", exc.getMessage()));
+            }
+        }
     }
 }

@@ -26,7 +26,8 @@ public class Task_2 extends JFrame
 		{
 			image = ImageIO.read(new File(path));
 		}
-		catch (IOException e) {
+		catch (IOException e)
+		{
 			System.out.println(e);
 			return;
 		}

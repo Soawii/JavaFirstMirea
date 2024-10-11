@@ -17,6 +17,7 @@ public class Combine
 			merged[idx++] = r[r_idx++];
 		return merged;
 	}
+
 	public static void main(String[] args)
 	{
 		SortingByGPA s = new SortingByGPA();

@@ -24,8 +24,8 @@ public class MergeSort
 			else new_arr[idx++] = arr[r_idx++];
 		}
 		for (int i = 0; i < new_arr.length; i++) arr[l + i] = new_arr[i];
-		return;
 	}
+
 	public static void main(String[] args)
 	{
 		Student[] students1 = new Student[10], students2 = new Student[10];

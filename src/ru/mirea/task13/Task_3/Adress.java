@@ -7,40 +7,49 @@ public class Adress
 	StringBuilder country = new StringBuilder(), region = new StringBuilder(), city = new StringBuilder();
 	StringBuilder street = new StringBuilder(), house = new StringBuilder(), frame = new StringBuilder(), apartment = new StringBuilder();
 
-	StringBuilder[] adressses = {country, region, city, street, house, frame, apartment};
+	StringBuilder[] adresses = {country, region, city, street, house, frame, apartment};
 
 	public Adress(String s)
 	{
 		String[] splitted = s.split(", ");
-		for (int i = 0; i < splitted.length; i++) adressses[i].append(splitted[i]);
+		for (int i = 0; i < splitted.length; i++) adresses[i].append(splitted[i]);
 	}
 
 	public Adress(String s, String del)
 	{
-		String[] splitted = s.split(del);
-		for (int i = 0; i < splitted.length; i++) adressses[i].append(splitted[i]);
+		StringTokenizer st = new StringTokenizer(s, del);
+		for (int i = 0; i < adresses.length; i++)
+		{
+			adresses[i].append(st.nextToken());
+		}
 	}
 
 	public Adress(String s, String[] del)
 	{
-		StringTokenizer st = new StringTokenizer(s, ",.:;\t\n\r");
-		for (int i = 0; i < adressses.length; i++)
+		StringBuilder regex = new StringBuilder();
+		for (int i = 0; i < del.length; i++)
 		{
-			adressses[i].append(st.nextToken());
+			if (i > 0) regex.append("|");
+			regex.append("(").append(del[i]).append(")");
+		}
+		String[] splitted = s.split(regex.toString());
+		for (int i = 0; i < Math.min(adresses.length, splitted.length); i++)
+		{
+			adresses[i].append(splitted[i]);
 		}
 	}
 
 	public void print_string()
 	{
-		for (int i = 0; i < adressses.length; i++)
+		for (int i = 0; i < adresses.length; i++)
 		{
-			System.out.println(adressses[i].toString());
+			System.out.println(adresses[i].toString());
 		}
 	}
 
 	public static void main(String[] args)
 	{
-		Adress a = new Adress("Russia:Moscow;TRN,Salar.16,1,62", new String[]{"a"});
+		Adress a = new Adress("Russia:Moscow;TRN,Salar.16,1,62", new String[]{":", ";", ",", "\\."});
 		a.print_string();
 	}
 }

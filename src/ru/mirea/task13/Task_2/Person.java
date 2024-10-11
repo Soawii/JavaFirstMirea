@@ -1,6 +1,7 @@
 package ru.mirea.task13.Task_2;
 
 import java.lang.StringBuilder;
+import java.util.Scanner;
 
 public class Person
 {
@@ -22,9 +23,14 @@ public class Person
 	public static void main(String[] args)
 	{
 		Person p = new Person();
-		p.first_name = "Timofey";
-		p.last_name = "Typalov";
-		p.fathers_name = "Alekseevich";
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Enter your first name: ");
+		p.first_name = sc.nextLine();
+		System.out.print("Enter your last name: ");
+		p.last_name = sc.nextLine();
+		System.out.print("Enter your fathers name: ");
+		p.fathers_name = sc.nextLine();
+
 		System.out.println(p.get_name());
 	}
 }

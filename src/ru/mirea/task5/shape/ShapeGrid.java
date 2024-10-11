@@ -2,16 +2,25 @@ package ru.mirea.task5.shape;
 import javax.swing.*;
 import java.awt.*;
 import java.util.Random;
+import java.util.Scanner;
 
 public class ShapeGrid extends JPanel
 {
-	static final int WIDTH = 400, HEIGHT = 500;
-	public final int N = 5, M = 4, G_W = 100;
+	int WIDTH = 400, HEIGHT = 500;
+	public int N = 5, M = 4, G_W, G_H;
 	Shape[][] shapes = new Shape[N][M];
 	Color[] colors = {Color.RED, Color.BLUE, Color.GREEN, Color.ORANGE, Color.PINK};
 
 	public ShapeGrid()
 	{
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter WIDTH: ");
+		WIDTH = sc.nextInt();
+		System.out.println("Enter HEIGHT: ");
+		HEIGHT = sc.nextInt();
+		G_W = WIDTH / M;
+		G_H = HEIGHT / N;
+
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 
 		Random r = new Random();
@@ -23,17 +32,16 @@ public class ShapeGrid extends JPanel
 				Color color_chosen = colors[r.nextInt(colors.length)];
 				if (random_int == 0)
 				{
-					shapes[i][j] = new Circle(color_chosen, i * G_W, j * G_W, G_W, G_W);
+					shapes[i][j] = new Circle(color_chosen, i * G_H, j * G_W, G_W, G_H);
 				}
 				else if (random_int == 1)
 				{
-					shapes[i][j] = new Square(color_chosen, i * G_W, j * G_W, G_W);
+					shapes[i][j] = new Square(color_chosen, i * G_H, j * G_W, Math.min(G_H, G_W));
 				}
 				else
 				{
-					shapes[i][j] = new Triangle(color_chosen, i * G_W, j * G_W, G_W);
+					shapes[i][j] = new Triangle(color_chosen, i * G_H, j * G_W, Math.min(G_H, G_W));
 				}
-				System.out.println("top " + i * G_W + ", left " + j * G_W);
 			}
 		}
 	}
