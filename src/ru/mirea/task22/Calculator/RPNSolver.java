@@ -144,7 +144,7 @@ public class RPNSolver
 		{
 			if (RPN.get(i) instanceof Operation operation)
 			{
-				MyNumber a = (MyNumber)RPN.get(i - 2), b = (MyNumber)RPN.get(i - 1), c = null;
+				MyNumber a = (i > 1) ? (MyNumber)RPN.get(i - 2) : new MyNumber(0.0), b = (MyNumber)RPN.get(i - 1), c = null;
 				if ("+".equals(operation.getName()))
 					c = new MyNumber(a.number + b.number);
 				else if ("-".equals(operation.getName()))
@@ -155,10 +155,18 @@ public class RPNSolver
 					c = new MyNumber(a.number / b.number);
 				else if ("^".equals(operation.getName()))
 					c = new MyNumber(Math.pow(a.number, b.number));
-				RPN.remove(i - 2);
-				RPN.remove(i - 2);
-				RPN.remove(i - 2);
-				RPN.add(i - 2, c);
+				if (i > 1)
+				{
+					RPN.remove(i - 2);
+					RPN.remove(i - 2);
+					RPN.remove(i - 2);
+					RPN.add(i - 2, c);
+				}
+				else {
+					RPN.remove(i - 1);
+					RPN.remove(i - 1);
+					RPN.add(i - 1, c);
+				}
 				i = -1;
 			}
 			else if (RPN.get(i) instanceof Function f)

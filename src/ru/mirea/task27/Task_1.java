@@ -28,19 +28,19 @@ class Pair<K, V>
 class HashTable<K, V>
 {
 	static final int bucket_amount = 1000;
-	public Object[] buckets;
+	public LinkedList<Pair<K, V>>[] buckets;
 
 	HashTable()
 	{
-		buckets = new Object[bucket_amount];
+		buckets = (LinkedList<Pair<K, V>>[])(new Object[bucket_amount]);
 		for (int i = 0; i < bucket_amount; i++)
-			buckets[i] = new LinkedList<Pair<K, V>>();
+			buckets[i] = new LinkedList<>();
 	}
 
 	public void put(K k, V v)
 	{
 		int bucket = Math.abs(k.hashCode()) % bucket_amount;
-		LinkedList<Pair<K, V>> list = (LinkedList<Pair<K, V>>)(buckets[bucket]);
+		LinkedList<Pair<K, V>> list = buckets[bucket];
 		Iterator<Pair<K, V>> i = list.iterator();
 		while (i.hasNext())
 		{
@@ -57,7 +57,7 @@ class HashTable<K, V>
 	public V get(K key)
 	{
 		int bucket = Math.abs(key.hashCode()) % bucket_amount;
-		LinkedList<Pair<K, V>> list = (LinkedList<Pair<K, V>>)(buckets[bucket]);
+		LinkedList<Pair<K, V>> list = buckets[bucket];
 		Iterator<Pair<K, V>> i = list.iterator();
 		while (i.hasNext())
 		{
@@ -73,7 +73,7 @@ class HashTable<K, V>
 	public void delete(K key)
 	{
 		int bucket = Math.abs(key.hashCode()) % bucket_amount;
-		LinkedList<Pair<K, V>> list = (LinkedList<Pair<K, V>>)(buckets[bucket]);
+		LinkedList<Pair<K, V>> list = buckets[bucket];
 		Iterator<Pair<K, V>> i = list.iterator();
 		while (i.hasNext())
 		{
@@ -93,7 +93,7 @@ class HashTable<K, V>
 		StringBuilder sb = new StringBuilder("HashTable\n");
 		for (int i = 0; i < bucket_amount; i++)
 		{
-			LinkedList<Pair<K, V>> list = (LinkedList<Pair<K, V>>)(buckets[i]);
+			LinkedList<Pair<K, V>> list = buckets[i];
 			if (!list.isEmpty())
 			{
 				Iterator<Pair<K, V>> it = list.iterator();

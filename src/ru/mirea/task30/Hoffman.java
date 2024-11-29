@@ -18,7 +18,7 @@ public class Hoffman
 		int new_freq = 0;
 		for (Character c : map.keySet())
 			new_freq += map.get(c).length() * frequency.get(c).freq;
-		System.out.println(new_freq * 1.0 / line.length());
+		System.out.println(new_freq * 1.0 / line.length() / 8.0);
 	}
 
 	public static HashMap<Character, Node> get_frequency(String line)
